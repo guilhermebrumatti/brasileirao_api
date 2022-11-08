@@ -58,6 +58,10 @@ async def brasileirao():
     #criando banco de dados, tabela, adicionando os dados do Dataframe na tabela
     engine = create_engine('sqlite://', echo=False)
     df.to_sql('tabela_classificacao', con=engine, if_exists='replace')
+
+@app.get("/loaddb")
+async def brasileirao():
+    
     result = engine.execute('SELECT * FROM tabela_classificacao').fetchall()
 
     return(result)
